@@ -1,8 +1,54 @@
 #searchBar {
   margin: 15px 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .tableWrapper {
   max-height: 400px;
   overflow: auto;
 }
+#deleteButton:hover {
+  color: red;
+}
+#details {
+  text-align: center;
+}
+#tableEntry:hover {
+  background-color: yellow;
+}
+tr {
+  background-color: #B1B3FF;
+}
+body {
+  background-color: #85B3FF;
+  font-family: Futura;
+}
+h1, h2, h3 {
+  font-family: Helvetica;
+}
+#top-bar {
+  background-color: #43447F;
+  color: white;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#side-bar {
+  background-color: #43447F;
+  color: white;
+  text-align: center;
+  
+  padding: 8px;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#details2 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#table {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
