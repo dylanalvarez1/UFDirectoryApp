@@ -35,8 +35,14 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
    
     if($scope.data != {}) {
       Listings.create($scope.data);
+      //location.reload();
      // $scope.listings.push($scope.data);
       $scope.data = null;
+      Listings.getAll().then(function(response) {
+        $scope.listings = response.data;
+      }, function(error) {
+        console.log('Unable to retrieve listings:', error);
+      });
       
     }
     else {
@@ -55,7 +61,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
        */
       let v;
       let deleted = false;
-      console.log(listing);
+    
       /*
       app.delete('/expressions/:code', (req, res, next) => {
         angular.forEach($scope.listings,function(v){
@@ -73,26 +79,14 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
       });
       */
-      let listingCopy = listing;
-      angular.forEach($scope.listings,function(v){
-        if(v == listingCopy)
-        {
-          console.log("going to delete");
-          console.log(v)
-          //$scope.listings.splice(v, 1); //Remove the listing
-          deleted = true;
-          
-          Listings.delete($scope.data);
-          console.log("post delete");
-          
-          
-          
-        }
-      }); 
-
-      if(!deleted) {
-        console.log('Not found');
-      }
+      //console.log(listing);
+      Listings.delete(listing._id);
+      Listings.getAll().then(function(response) {
+        $scope.listings = response.data;
+      }, function(error) {
+        console.log('Unable to retrieve listings:', error);
+      });
+      //location.reload();
 
       
 

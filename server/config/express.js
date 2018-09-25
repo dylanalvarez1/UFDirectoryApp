@@ -8,6 +8,7 @@ var path = require('path'),
 
 module.exports.init = function() {
   //connect to database
+  mongoose.Promise = global.Promise;
   mongoose.connect(config.db.uri);
 
   //initialize app
