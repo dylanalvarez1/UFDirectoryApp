@@ -9,15 +9,14 @@ exports.create = function(req, res) {
   /* Instantiate a Listing */
   var listing = new Listing(req.body);
 
+
   /* Then save the listing */
   listing.save(function(err) {
     if(err) {
-      //console.log(err);
-      res.status(404).send(err);
-      //throw err;
+      console.log(err);
+      res.status(400).send(err);
     } else {
       res.json(listing);
-      res.status(200).send();
     }
   });
 };
@@ -44,7 +43,7 @@ exports.update = function(req, res) {
     /* Then save the listing */
     listing.save(function(err) {
       if(err) {
-
+        console.log(err);
         res.status(400).send(err);
         //throw err;
       } else {
@@ -54,7 +53,7 @@ exports.update = function(req, res) {
     });
   }
   else {
-    res.status(404).send();
+    res.status(400).send();
   }
 
 };
@@ -64,22 +63,20 @@ exports.delete = function(req, res) {
 
  var listing = req.listing;
  
- var ObjectId = mongoose.Types.ObjectId;
- let valid = ObjectId.isValid(listing._id);
-
-if(valid) {
   // find the user with code identifier
-  Listing.findOneAndRemove({ code: listing.code }, function(err) {
+  Listing.findOneAndRemove({ _id: listing._id }, function(err) {
     if (err) {
-      res.status(404).send(err);
-
+      console.log(err);
+      res.status(400).send(err);
+      //throw err;
     }
     else {
       res.json(listing);
+      res.status(200).send();
     }
 
   });
-}
+
 
 };
 
@@ -89,10 +86,10 @@ exports.list = function(req, res) {
 
   mongoose.model("Listing").find({}, function(err, docs) {
     if (err) {
-      res.status(404).send(err);
+      console.log(err);
+      res.status(400).send(err);
+      //throw err;
     }
-    //console.log(docs);
-    //THIS IS WHERE THE LISTINGS ARE DISPLAYED INTHE CONSOLE LOG
     res.status(200).send(docs);
   }).collation({locale:'en',strength: 2}).sort();
 
@@ -106,14 +103,14 @@ exports.list = function(req, res) {
         then finally call next
  */
 exports.listingByID = function(req, res, next, id) {
-  console.log(req.params);
   Listing.findById(id).exec(function(err, listing) {
     if(err) {
       res.status(400).send(err);
-      throw err;
     } else {
       req.listing = listing;
       next();
     }
   });
 };
+
+///CHange port, change links, do github stuff, create that other file, deploy good

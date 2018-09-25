@@ -20,8 +20,6 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
       if($scope.data != {}) {
         Listings.create($scope.data);
-        //location.reload();
-      // $scope.listings.push($scope.data);
         $scope.data = null;
         Listings.getAll().then(function(response) {
           $scope.listings = response.data;
@@ -41,8 +39,6 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         Delete the article using the Listings factory. If the removal is successful, 
 		navigate back to 'listing.list'. Otherwise, display the error. 
        */
-      let v;
-      let deleted = false;
   
       Listings.delete(listing._id);
       Listings.getAll().then(function(response) {
